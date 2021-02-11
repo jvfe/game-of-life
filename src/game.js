@@ -1,5 +1,6 @@
 
 let grid;
+let proximaGeraçao;
 let cols;
 let rows;
 const resoluçao = 10;
@@ -43,14 +44,14 @@ function draw() {
     background(0);
     frameRate(10);
 
-    let proximaGeraçao = façaGrid(cols, rows);
+    proximaGeraçao = façaGrid(cols, rows);
 
     for (let col = 0; col < cols; col++) {
         for (let row = 0; row < rows; row++) {
             let x = col * resoluçao;
             let y = row * resoluçao;
 
-            (grid[col][row] === 1) ? rect(x, y, resoluçao - 1, resoluçao - 1) : null
+            (grid[col][row] === 1) ? rect(x, y, resoluçao, resoluçao) : null
 
 
             const ambienteAtual = grid[col][row];
