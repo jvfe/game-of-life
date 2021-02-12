@@ -3,20 +3,33 @@ let grid;
 let proximaGeraçao;
 let cols;
 let rows;
-let button;
 let space;
+let rodando = true;
 let xSelecionado = 10;
 let ySelecionado = 10;
 const resoluçao = 10;
 
-function façaGrid(cols, rows) {
-    const arr2D = Array(cols).fill(null).map(() => Array(rows));
+function fazArrVazio(cols, rows) {
+    return Array(cols).fill(null).map(() => Array(rows));
+}
 
-    for (let col = 0; col < cols; col++) {
-        for (let row = 0; row < rows; row++) {
-            arr2D[col][row] = floor(random(2));
+function façaGrid(cols, rows, vazio = false) {
+    const arr2D = fazArrVazio(cols, rows);
+
+    if (vazio === false) {
+        for (let col = 0; col < cols; col++) {
+            for (let row = 0; row < rows; row++) {
+                arr2D[col][row] = floor(random(2));
+            }
+        }
+    } else {
+        for (let col = 0; col < cols; col++) {
+            for (let row = 0; row < rows; row++) {
+                arr2D[col][row] = 0;
+            }
         }
     }
+
 
     return arr2D
 }
@@ -92,14 +105,27 @@ function draw() {
 
     background(0);
     frameRate(10);
-    desenheGrid();
+    if (rodando === true) {
+        façaGeraçao();
+    }
 
-    façaGeraçao();
+    document.getElementById('clear-board').addEventListener('click', () => {
+        grid = façaGrid(cols, rows, vazio = true);
+        rodando = false;
+    })
+
+    document.getElementById('rodar-jogo').addEventListener('click', () => {
+        rodando = true;
+    })
+
+    desenheGrid();
 }
 
 function mousePressed() {
+
     xSelecionado = floor(mouseX / space);
     ySelecionado = floor(mouseY / space);
-
-    (grid[xSelecionado][ySelecionado] == 0) ? grid[xSelecionado][ySelecionado] = 1 : grid[xSelecionado][ySelecionado] = 0
+    if (xSelecionado < cols && ySelecionado < rows) {
+        (grid[xSelecionado][ySelecionado] == 0) ? grid[xSelecionado][ySelecionado] = 1 : grid[xSelecionado][ySelecionado] = 0
+    }
 }

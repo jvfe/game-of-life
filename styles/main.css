@@ -24,3 +24,12 @@ h1 {
     text-align: center;
     padding: .5%;
 }
+
+.game-area {
+    display: flex;
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+}
