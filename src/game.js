@@ -69,19 +69,19 @@ function façaGeraçao() {
     for (let col = 0; col < cols; col++) {
         for (let row = 0; row < rows; row++) {
 
-            const ambienteAtual = grid[col][row];
+            const celulaAtual = grid[col][row];
 
             const vizinhos = calculeVizinhos(grid, col, row);
 
 
             // Se tiver menos que dois vizinhos morre
-            if ((ambienteAtual === 1) && (vizinhos < 2)) proximaGeraçao[col][row] = 0;
+            if ((celulaAtual === 1) && (vizinhos < 2)) proximaGeraçao[col][row] = 0;
             // Se tiver mais que 3 vizinhos morre
-            else if ((ambienteAtual === 1) && (vizinhos > 3)) proximaGeraçao[col][row] = 0;
+            else if ((celulaAtual === 1) && (vizinhos > 3)) proximaGeraçao[col][row] = 0;
             // Se não existir e houver 3 vizinhos, reproduzem
-            else if ((ambienteAtual === 0) && (vizinhos === 3)) proximaGeraçao[col][row] = 1;
+            else if ((celulaAtual === 0) && (vizinhos === 3)) proximaGeraçao[col][row] = 1;
             // Ou então permanece
-            else proximaGeraçao[col][row] = ambienteAtual;
+            else proximaGeraçao[col][row] = celulaAtual;
 
 
         }
