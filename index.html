@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game of Life</title>
+    <title>Jogo da Vida</title>
     <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=BioRhyme&family=Cabin&display=swap" rel="stylesheet">
@@ -19,17 +19,21 @@
             <h1>Jogo da Vida de Conway</h1>
             <p>Feito como atividade de Modelagem e Simulação Computacional - UFRN</p>
         </div>
+        <div class="info">
+            <p><b>Dica</b>: Tente limpar o tabuleiro e clicar nele para criar e remover células</p>
+        </div>
         <div class="game-area">
             <main>
             </main>
             <div class="controls">
-                <button id="limpar-grid">Limpar tabuleiro</button>
-                <button id="rodar-jogo">Rodar jogo</button>
-                <button id="gerar-grid">Gerar novo tabuleiro</button>
+
+                <button id="limpar-grid" class="control-button"> ⬚ Limpar tabuleiro</button>
+                <button id="rodar-jogo" class="control-button"> ⮞ Rodar jogo</button>
+                <button id="gerar-grid" class="control-button"> ⭯ Gerar novo tabuleiro</button>
             </div>
         </div>
         <footer>
-            <p>Feito por <a href="https://jvfe.github.io/">João Vitor Ferreira</a></p>
+            <p>Construído por <a target="_blank" href="https://jvfe.github.io/">João Vitor Ferreira</a></p>
         </footer>
     </div>
 </body>
