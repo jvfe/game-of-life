@@ -109,13 +109,17 @@ function draw() {
         façaGeraçao();
     }
 
-    document.getElementById('clear-board').addEventListener('click', () => {
+    document.getElementById('limpar-grid').addEventListener('click', () => {
         grid = façaGrid(cols, rows, vazio = true);
         rodando = false;
     })
 
     document.getElementById('rodar-jogo').addEventListener('click', () => {
         rodando = true;
+    })
+
+    document.getElementById('gerar-grid').addEventListener('click', () => {
+        grid = façaGrid(cols, rows);
     })
 
     desenheGrid();
