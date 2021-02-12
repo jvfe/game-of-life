@@ -57,7 +57,7 @@ a {
 .control-button {
     border: 0;
     border-radius: 0.25rem;
-    background: #D77A61;
+    background: #8b4ec4;
     color: white;
     font-family: inherit;
     font-size: 1rem;
@@ -74,7 +74,7 @@ a {
 }
 
 .control-button:hover {
-    background: #B0644F;
+    background: #51138c;
 }
 
 footer {
