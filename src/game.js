@@ -3,10 +3,22 @@ let grid;
 let proximaGeraçao;
 let cols;
 let rows;
+let button;
+let space;
+let xSelecionado = 10;
+let ySelecionado = 10;
 const resoluçao = 10;
 
 function façaGrid(cols, rows) {
-    return Array(cols).fill(null).map(() => Array(rows));
+    const arr2D = Array(cols).fill(null).map(() => Array(rows));
+
+    for (let col = 0; col < cols; col++) {
+        for (let row = 0; row < rows; row++) {
+            arr2D[col][row] = floor(random(2));
+        }
+    }
+
+    return arr2D
 }
 
 function calculeVizinhos(grid, x, y) {
@@ -25,38 +37,28 @@ function calculeVizinhos(grid, x, y) {
     return vizinhosSoma
 }
 
-function setup() {
-    createCanvas(600, 600);
-    cols = width / resoluçao;
-    rows = height / resoluçao;
-    grid = façaGrid(cols, rows);
-
+function desenheGrid() {
     for (let col = 0; col < cols; col++) {
         for (let row = 0; row < rows; row++) {
-            grid[col][row] = floor(random(2));
+            const x = col * resoluçao;
+            const y = row * resoluçao;
+
+            (grid[col][row] === 1) ? rect(x, y, resoluçao, resoluçao) : null
+
         }
     }
-
 }
 
-function draw() {
 
-    background(0);
-    frameRate(10);
-
+function façaGeraçao() {
     proximaGeraçao = façaGrid(cols, rows);
 
     for (let col = 0; col < cols; col++) {
         for (let row = 0; row < rows; row++) {
-            let x = col * resoluçao;
-            let y = row * resoluçao;
-
-            (grid[col][row] === 1) ? rect(x, y, resoluçao, resoluçao) : null
-
 
             const ambienteAtual = grid[col][row];
 
-            let vizinhos = calculeVizinhos(grid, col, row);
+            const vizinhos = calculeVizinhos(grid, col, row);
 
 
             // Se tiver menos que dois vizinhos morre
@@ -73,4 +75,31 @@ function draw() {
     }
 
     grid = proximaGeraçao;
+}
+
+function setup() {
+    createCanvas(600, 600);
+
+    cols = width / resoluçao;
+    rows = height / resoluçao;
+    grid = façaGrid(cols, rows);
+
+    space = min(width, height) / max(rows, cols);
+
+}
+
+function draw() {
+
+    background(0);
+    frameRate(10);
+    desenheGrid();
+
+    façaGeraçao();
+}
+
+function mousePressed() {
+    xSelecionado = floor(mouseX / space);
+    ySelecionado = floor(mouseY / space);
+
+    (grid[xSelecionado][ySelecionado] == 0) ? grid[xSelecionado][ySelecionado] = 1 : grid[xSelecionado][ySelecionado] = 0
 }
